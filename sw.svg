@@ -1,0 +1,22 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg"
+            width="10" height="10">
+
+    <defs>
+        <!-- a transparent glow that takes on the colour of
+                the object it's applied to -->
+        <filter id="glow">
+            <feGaussianBlur stdDeviation=".5" result="coloredBlur"/>
+            <feMerge>
+                <feMergeNode in="coloredBlur"/>
+                <feMergeNode in="SourceGraphic"/>
+            </feMerge>
+        </filter>
+    </defs>
+
+    <g filter="url(#glow)" stroke-width="1" fill="none" stroke="white"
+            opacity="0.3"
+            transform=" rotate(45 5 5) ">
+        <circle cx="5" cy="5" r="4"/>
+        <path d="M5 2 5 8M3 6 5 8 7 6" stroke-linecap="round" />
+    </g>            
+</svg>
