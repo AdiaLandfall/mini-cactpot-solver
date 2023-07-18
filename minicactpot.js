@@ -52,6 +52,7 @@ function getDeadOption(num){
 
 function numKey(event){
     const which = event.which;
+    if( which == 82 ) return cleanSlate();
     if( which < 49 ) return;
     if( which > 57 ) return;
     const num = which - 48;
@@ -97,7 +98,10 @@ function highlightCells(targets){
 
 /** Called when completely resetting.  */
 function cleanSlate(){
-    $(".scritch").removeClass( "pickme" );
+    $(".scritch").removeClass( "pickme" )
+            .text("");
+    $(".line").text("");
+    return false;
 }
 
 function displayLinePredictions( data, bests ){
@@ -221,6 +225,10 @@ function calculate(){
 
 
 function doFinalCalc(){
+
+    // better tidy up!
+    $(".pickme").removeClass("pickme");
+
     const lines = getAllLines();
     const grid = getValuesGrid();
     const live = getLiveNumbers();

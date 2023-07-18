@@ -20,7 +20,6 @@ body{
 .card-content > div{
     min-height: 5rem;
 }
-
 .scritch, .number-option {
     display: flex;
     align-items: center;
@@ -30,14 +29,64 @@ body{
 .scritch{
     font-size: 5rem;
     border: 1px solid transparent;
-    background-image: radial-gradient( transparent 50%, #8CF 60%, transparent 70%);
+    background-image: radial-gradient( #443 50%, #8CF 60%, transparent 70%);
     cursor: pointer;
 }.scritch:hover{
     border: 1px solid white;
 }.scritch.pickme{
-    background-image: radial-gradient( transparent 20%, #222 40%);
-    background-color: #255;
+    background-image: radial-gradient( #80807A 50%, #8CF 60%, transparent 70%);
+    border: 1px solid white;
 }
+
+.info{
+    grid-column: 5;
+    grid-row: 2/ span 3;
+    justify-self: center;
+}
+
+.info .all{
+    font-size: .7rem;
+}
+
+/*
+.info .reset{
+    padding: 1rem;
+    margin: 3rem;
+    border: 5px white double;
+    border-radius: 1rem;
+    font-size: 2rem;
+    text-align: center;
+}
+*/
+.info div{ margin: 1rem; }
+
+
+
+
+.info .reset {
+    font-size: 3rem;
+    text-align: center;
+
+    --a: 8deg; /* control the angle of rotation (the smaller, the better) */
+    border: 5px #F002 double;
+    border-radius: 20px;
+    background-color: #F006;
+
+    transform: perspective(400px) rotate3d(var(--r,1,-1),0,calc(var(--i,1)*var(--a)));
+    -webkit-mask: 
+      linear-gradient(135deg,#000c 40%,#000,#000c 60%)
+      100% 100%/250% 250%;
+    transition: .4s;
+    cursor: pointer;
+  }
+  .info .reset:hover {
+    --i: -1;
+    -webkit-mask-position: 0 0;
+  }
+
+
+
+
 
 
 
@@ -73,8 +122,8 @@ body{
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.5rem;
-    padding: 2rem;
+    font-size: 1.4rem;
+    padding: 1.5rem;
     white-space: nowrap;
     background-size: 30%;
     background-position: center;
@@ -87,7 +136,7 @@ body{
 .line7 { background-image: url("sw.svg"); }
 
 .line > .best{
-    font-size: 110%;
+    font-size: 105%;
     font-weight: bold;
     color: gold;
 }
