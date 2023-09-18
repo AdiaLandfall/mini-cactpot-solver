@@ -29,43 +29,32 @@ body{
 .scritch{
     font-size: 5rem;
     border: 1px solid transparent;
-    background-image: radial-gradient( #443 50%, #8CF 60%, transparent 70%);
+    background-image: radial-gradient( #331 50%, #59C 60%, transparent 70%);
     cursor: pointer;
 }.scritch:hover{
-    border: 1px solid white;
+    background-image: radial-gradient( #220 50%, #8CF 60%, transparent 70%);
 }.scritch.pickme{
-    background-image: radial-gradient( #80807A 50%, #8CF 60%, transparent 70%);
-    border: 1px solid white;
+    background-image: radial-gradient( #59C 50%, #331 60%, transparent 70%);
+}.scritch.pickme:hover{
+    background-image: radial-gradient( #8CF 50%, #220 60%, transparent 70%);
 }
 
 .info{
     grid-column: 5;
     grid-row: 2/ span 3;
     justify-self: center;
+    width: 100%;
+    display: flex;
+    flex-flow: column;
+    justify-content: start;
+    align-items: center;
+    gap: 1rem;
 }
-
-.info .all{
-    font-size: .7rem;
-}
-
-/*
-.info .reset{
-    padding: 1rem;
-    margin: 3rem;
-    border: 5px white double;
-    border-radius: 1rem;
+.info .all{ font-size: .7rem;}
+.info .reset {
     font-size: 2rem;
     text-align: center;
-}
-*/
-.info div{ margin: 1rem; }
-
-
-
-
-.info .reset {
-    font-size: 3rem;
-    text-align: center;
+    width: 80%;
 
     --a: 8deg; /* control the angle of rotation (the smaller, the better) */
     border: 5px #F002 double;
@@ -83,8 +72,62 @@ body{
     --i: -1;
     -webkit-mask-position: 0 0;
   }
+@media screen and (max-width: 1000px){
+    .info>*{ display: none;}
+}
+
+.tab-content{
+    display:flex;
+    justify-content: space-evenly;
+    width: 100%;
+    border-bottom: 2px white solid;
+}
+  
+.tab-content div{
+    border: 1px solid white;
+    border-bottom: 0;
+    border-radius: 1rem 1rem 0 0;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    color: #888;
+    cursor: pointer;
+}
+
+.tab-content div.active{
+    background: #331;
+    color: #FFF;
+}
+
+.tab-area.active{display: flex;}
+.tab-area{
+    display: none;
+    flex-flow: column;
+    gap: 2rem;
+    padding: 0 1rem;
+}
 
 
+.key {
+    box-sizing: border-box;
+    font-size: 1rem;
+    text-align: center;
+    width: 2rem;
+    height: 2rem;
+    line-height: 1.8rem;
+    color: #555;
+    cursor: pointer;
+    margin: 0 8px;
+    border-color: #f2f2f2;
+    border-style: solid;
+    text-shadow: 0 0.5px 1px #777, 0 2px 6px #f2f2f2;
+    border-width: 1px;
+    border-radius: 10px;
+    background: -webkit-linear-gradient(top, #f9f9f9 0%, #D2D2D2 80%, #c0c0c0 100%);
+    font-family: sans-serif;
+    display: inline-block;
+    transition: box-shadow 0.3s ease, transform 0.15s ease;
+    box-shadow: 0 0 1px #888,0 1px 0 #fff, 0 6px 0 #C0C0C0, 0 8px 17px rgba(#444, 0.4), 2px 1px 4px rgba(#444, 0.25), -2px 1px 4px rgba(#444, 0.25), 0 9px 16px rgba(#444, 0.1);
+}  
 
 
 
@@ -94,15 +137,19 @@ body{
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
+    color: #FFF;
+    background-color: #0008;
+    border-radius: 1rem;
 }
-
 .number-option{
     font-size: 1rem;
+    cursor: crosshair;
 }.number-option:hover{
     font-size: 1.1rem;
     font-weight: bold;
     color: #000;
-    background-color: #FCF
+    background-color: #8CF;
+    border-radius: 3rem;
 }
 
 .number-dead {
@@ -116,19 +163,30 @@ body{
 }
 
 
+
+
+
 .line {
     display: flex;
     flex-flow: column;
     justify-content: center;
     align-items: center;
     text-align: center;
-    font-size: 1.4rem;
     padding: 1.5rem;
     white-space: nowrap;
     background-size: 30%;
     background-position: center;
     background-repeat: no-repeat;
 }
+
+@media screen and (min-width: 1000px){
+    .line{ font-size: 1.4rem }
+}
+
+@media screen and (max-width: 1000px){
+    .line{ font-size: 1rem; }
+}
+
 
 .line0, .line1, .line2 { background-image: url("east.svg");}
 .line3, .line4, .line5 { background-image: url("south.svg");}

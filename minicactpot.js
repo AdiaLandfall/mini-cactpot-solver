@@ -13,6 +13,10 @@ $( document ).ready(function() {
 
     $("body").on("keyup", numKey );
 
+    $(".reset").on("click", cleanSlate );
+
+    $(".tab-content").on("click",changeTab);
+
 });
 
 
@@ -441,4 +445,24 @@ function getFreeNumbers(live){
         free.push( num );
     }
     return free;
+}
+
+
+
+
+function changeTab(event){
+    const clickedTab = $(event.target);
+    if( clickedTab.hasClass("tab-content") ) return;
+    if( clickedTab.hasClass("active") ) return;
+
+    $(".tab-content div").removeClass("active");
+    clickedTab.addClass("active");
+
+    $(".tab-area").removeClass("active");
+    if( clickedTab.hasClass("tab-legend") ){
+        $(".tab-area-legend").addClass("active");
+    } else {
+        $(".tab-area-shortcuts").addClass("active");
+    }
+
 }
