@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html class="en-us supports csstransforms3d no-touchevents" xmlns:og="http://ogp.me/ns#" xmlns:fb="http://www.facebook.com/2008/fbml" lang="en-us">
+<head>
+<meta charset="utf-8"/>
+<title>FFXIV Symbol Tool</title>
+<style type="text/css">
+@font-face {
+    font-family: "ff14";
+    src: url("ff14.woff");
+}
+body {
+	font-family: "ff14";
+}
+
+.output {
+	font-family: "ff14";
+	float: left;
+	clear: both;
+}
+
+#symbolTable {
+	float: left;
+}
+#symbolTable td {
+	width: 2em;
+}
+#converter {
+	float: left;
+}
+</style>
+<script>
+
+const firstChar = 0xE000 //0xE000;
+
+let spanA;
+let spanB;
+let spanC;
+
+document.addEventListener('DOMContentLoaded', (event) => {
+
+	const input = document.getElementById('converterInput');
+	input.addEventListener('input', converterTextChanged);
+	spanA = document.getElementById("converterOutputA");
+	spanB = document.getElementById("converterOutputB");
+	spanC = document.getElementById("converterOutputC");
+
+	const table = document.getElementById("symbolTable");
+	let row; let oneCell;
+	for( let r=0; r<16; ++r ){
+		row = table.insertRow();
+		oneCell = row.insertCell();
+		oneCell.innerHTML = (firstChar + (16*r)).toString(16).toUpperCase();
+		for( let i=0; i<16; ++i ){
+			oneCell = row.insertCell();
+			oneCell.innerHTML = String.fromCharCode(firstChar + i+(16*r));
+		}
+	}
+});
+
+function converterTextChanged(e){
+	let output = e.target.value;
+	output = output.replace(/\.{3}/gi,"");
+	output = output.replace(/\./gi,"");
+	output = output.replace(/gil/gi,"");
+	output = output.replace(/level/gi,"");
+	output = output.replace(/sprout/gi,"");
+	output = output.replace(/HQ/gi,"");
+	output = output.replace(/\d/g, function (x) {
+		return String.fromCharCode( x.charCodeAt()+0xE030 );
+	});
+	output = output.replace(/\*/gi,"");
+	spanA.innerHTML = output;
+
+	output = e.target.value;
+	output = output.replace(/\d{2,}/g, function (x) {
+		const num = +x;
+		if( num < 10 || num > 31  ) return x;
+		return String.fromCharCode( num+0xE08F );
+	});
+	output = output.replace(/\d/g, function (x) {
+		return String.fromCharCode( x.charCodeAt()+0xE05F );
+	});
+	output = output.replace(/[a-z]/g, function (x) {
+		return String.fromCharCode( x.charCodeAt()+0xE010 );
+	});
+	output = output.replace(/[A-Z]/g, function (x) {
+		return String.fromCharCode( x.charCodeAt()+0xE030 );
+	});
+	output = output.replace(/\+/g, "");
+	spanB.innerHTML = output;
+
+	output = e.target.value;
+	output = output.replace(/[1-9]/g, function (x) {
+		return String.fromCharCode( x.charCodeAt()+0xE080 );
+	});
+	spanC.innerHTML = output;
+}
+
+
+</script>
+</head>
+<body>
+
+<table id="symbolTable">
+</table>
+
+<div id="converter">
+	<textarea id="converterInput">Text here</textarea> <br />
+	<textarea class="output" id="converterOutputA" readonly></textarea>
+	<textarea class="output" id="converterOutputB" readonly></textarea>
+	<textarea class="output" id="converterOutputC" readonly></textarea>
+</div>
+
+</body>
+</html>
